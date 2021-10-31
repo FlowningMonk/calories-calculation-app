@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken')
 
-function generateToken(id, name, email) {
-    return jwt.sign({ id, name, email }, process.env.SECRET_KEY, { expiresIn: '10h' })
+const generateToken = (id, name, email) => {
+    return jwt.sign(
+        { id, name, email },
+        process.env.SECRET_KEY,
+        { expiresIn: '10h' }
+    )
 }
 
 class TokenGenerator {

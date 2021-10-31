@@ -1,5 +1,8 @@
 const UserService = require('./../services/user')
 
+const TokenGenerator = require('./../services/token')
+const { Tokens } = require('../db/models')
+
 class UserController {
     async register(req, res, next) {
         try {
@@ -13,6 +16,7 @@ class UserController {
             console.log(e)
         }
     }
+
     async login(req, res, next) {
         let data = await UserService.login(req.body)
         if (data.status === false) {
@@ -21,9 +25,12 @@ class UserController {
             return res.json(data)
         }
     }
-    async refresh(req, res, next) {
-        return res.json('Рефреш')
 
+    async refresh(req, res, next) {
+        let token = TokenGenerator.generate(req.user)
+        await Tokens.update({ token: token }, { where: { id: req.check.id } }).then(() => {
+            return res.json({ status: true, message: "good", token })
+        })
     }
 
     async confirm(req, res, next) {

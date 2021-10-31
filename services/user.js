@@ -1,6 +1,6 @@
 const ApiError = require('./../error/error')
 
-const { User, Code } = require('./../db/models');
+const { User, Code, Tokens } = require('./../db/models');
 const PasswordMiddleware = require('./password');
 
 const MailSendler = require('./mail');
@@ -84,7 +84,9 @@ class UserService {
             return { status: false, message: "Неверный пароль" }
         }
 
-        let token = TokenGenerator.generate(check.id, check.name, check.email)
+        let token = TokenGenerator.generate(check)
+
+        await Tokens.create({ token: token, UserId: check.id })
 
         return { status: true, message: 'good', token }
     }
