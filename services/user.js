@@ -2,8 +2,8 @@ const ApiError = require('./../error/error')
 
 const { User, Code } = require('./../db/models');
 const PasswordMiddleware = require('./password');
-const MailSendler = require('./mail');
 
+const MailSendler = require('./mail');
 const TokenGenerator = require('./token')
 
 const bcrypt = require('bcrypt');
