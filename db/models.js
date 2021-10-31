@@ -33,6 +33,11 @@ const Tokens = sequelize.define('Tokens', {
     token: { type: DataTypes.STRING }
 })
 
+const Roles = sequelize.define('Roles', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    name: { type: DataTypes.STRING, unique: true }
+})
+
 // ---- Connections ---- //
 
 Product.hasOne(User)
@@ -47,6 +52,9 @@ Code.belongsTo(User)
 User.hasMany(Tokens)
 Tokens.belongsTo(User)
 
+Roles.hasMany(User)
+User.belongsTo(Roles)
+
 // ---- Connections ---- //
 
 module.exports = {
@@ -54,5 +62,6 @@ module.exports = {
     Product,
     Diet,
     Code,
-    Tokens
+    Tokens,
+    Roles
 }
