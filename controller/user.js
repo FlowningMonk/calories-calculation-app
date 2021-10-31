@@ -1,4 +1,3 @@
-const ApiError = require('../error/error')
 const UserService = require('./../services/user')
 
 class UserController {
