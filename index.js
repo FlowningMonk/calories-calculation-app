@@ -12,8 +12,6 @@ app.use(cors())
 app.use(express.json())
 app.use('/api', router)
 
-app.get('/', () => console.log('It works!'))
-
 const server = async () => {
     try {
         await sequelize.authenticate()
