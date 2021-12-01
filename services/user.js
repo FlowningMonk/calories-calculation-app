@@ -39,7 +39,7 @@ class UserService {
             email: obj.email,
             password: hashPassword
         }).then(async data => {
-            return (await MailSendler.confirm(obj.email, data.id))
+            return await MailSendler.confirm(obj.email, data.id)
         })
     }
 
@@ -49,7 +49,7 @@ class UserService {
             return { status: false, message: 'Неверная почта' }
         }
 
-        let check = await Code.findOne({
+        await Code.findOne({
             where:
             {
                 name: obj.name,

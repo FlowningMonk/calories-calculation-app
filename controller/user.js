@@ -10,11 +10,12 @@ class UserController {
             if (!a.status) {
                 return next(new Error(a.message))
             } else {
-                console.log(a)
+                console.log(a.message)
             }
         } catch (e) {
-            console.log(e)
+            return console.log(e)
         }
+        return res.json({ status: true, message: "good" })
     }
 
     async login(req, res, next) {
