@@ -1,6 +1,11 @@
 const sequelize = require('./config')
 const { DataTypes } = require('sequelize')
 
+const DevToken = sequelize.define('DevTokens', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    token: { type: DataTypes.STRING }
+})
+
 const User = sequelize.define('Users', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     name: { type: DataTypes.STRING },
@@ -58,6 +63,8 @@ User.belongsTo(Roles)
 // ---- Connections ---- //
 
 module.exports = {
+    DevToken,
+
     User,
     Product,
     Diet,

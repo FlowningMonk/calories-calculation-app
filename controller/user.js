@@ -2,20 +2,20 @@ const UserService = require('./../services/user')
 
 const TokenGenerator = require('./../services/token')
 const { Tokens } = require('../db/models')
+const ApiError = require('../error/error')
 
 class UserController {
     async register(req, res, next) {
         try {
             let a = await UserService.check(req.body)
             if (!a.status) {
-                return next(new Error(a.message))
+                return next(ApiError.badRequest(a.message))
             } else {
-                console.log(a.message)
+                return res.json(a.message)
             }
         } catch (e) {
             return console.log(e)
         }
-        return res.json({ status: true, message: "good" })
     }
 
     async login(req, res, next) {
@@ -42,7 +42,6 @@ class UserController {
                     return next(new Error(data.message))
                 }
                 if (data.status === true) {
-                    console.log('a')
                     return res.json(`Аккаунт подтверждён`)
                 }
             }

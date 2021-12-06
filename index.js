@@ -7,10 +7,11 @@ const router = require('./router/index')
 
 const sequelize = require('./db/config')
 const models = require('./db/models')
+const DevMiddleware = require('./middleWares/dev')
 
 app.use(cors())
 app.use(express.json())
-app.use('/api', router)
+app.use('/api', DevMiddleware, router)
 
 const server = async () => {
     try {

@@ -13,13 +13,13 @@ class UserService {
         let check;
 
         if (!obj.name) {
-            return ApiError.badRequest('Не указано имя')
+            return { status: false, message: 'Не указано имя' }
         }
         if (!obj.email) {
-            return ApiError.badRequest('Не указана почта')
+            return { status: false, message: 'Не указана почта' }
         }
         if (!obj.password) {
-            return ApiError.badRequest('Не указан пароль')
+            return { status: false, message: 'Не указан пароль' }
         }
 
         check = await User.findOne({ where: { email: obj.email } })
