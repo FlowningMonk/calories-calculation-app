@@ -9,6 +9,22 @@ class ProductController {
             return res.json(data)
         }
     }
+
+    async update(req, res, next) {
+
+    }
+
+    async delete(req, res, next) {
+
+    }
+
+    async getOne(req, res, next) {
+
+    }
+
+    async getAll(req, res, next) {
+
+    }
 }
 
 module.exports = new ProductController()

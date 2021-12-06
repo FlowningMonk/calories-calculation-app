@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express()
 
-const ProductController = require('../controller/product')
-
 const MainMiddleware = require('./../middleWares/index')
 
-router.post('/', MainMiddleware, ProductController.create)
+const auth = require('./product/auth')
+const public = require('./product/public')
+
+router.use('/auth', MainMiddleware, auth)
+router.use('/public', public)
 
 module.exports = router
